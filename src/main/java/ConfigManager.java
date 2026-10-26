@@ -42,6 +42,11 @@ public class ConfigManager {
         // Keep legacy behavior: default to super-hide mode when unset.
         return properties.getBoolean(ConfigKeys.KEY_COLORFUL, false);
     }
+
+    // 获取超隐蔽模式中文名称显示设置
+    public boolean isShowChineseNamesEnabled() {
+        return properties.getBoolean(ConfigKeys.KEY_SHOW_CHINESE_NAMES, false);
+    }
     
     // 获取代理设置
     public String getProxySetting() {

@@ -22,5 +22,9 @@ public abstract class BaseRefreshHandler {
     public abstract void setupTable(List<String> codes);
     public abstract void handle(List<String> codes);
     public abstract void stopHandle();
-    public abstract void refreshColorful(boolean colorful);
+    public void refreshColorful(boolean colorful) {
+        refreshColorful(colorful, false);
+    }
+
+    public abstract void refreshColorful(boolean colorful, boolean showChineseNames);
 }

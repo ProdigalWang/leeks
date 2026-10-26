@@ -26,6 +26,7 @@ public abstract class CoinRefreshHandler extends DefaultTableModel {
 
     private JTable table;
     private boolean colorful = true;
+    private boolean showChineseNames = false;
 
     static {
         PropertiesComponent instance = PropertiesComponent.getInstance();
@@ -57,14 +58,15 @@ public abstract class CoinRefreshHandler extends DefaultTableModel {
         FontMetrics metrics = table.getFontMetrics(table.getFont());
         table.setRowHeight(Math.max(table.getRowHeight(), metrics.getHeight()));
         table.setModel(this);
-        refreshColorful(!colorful);
+        refreshColorful(!colorful, false);
     }
 
-    public void refreshColorful(boolean colorful) {
-        if (this.colorful == colorful) {
+    public void refreshColorful(boolean colorful, boolean showChineseNames) {
+        if (this.colorful == colorful && this.showChineseNames == showChineseNames) {
             return;
         }
         this.colorful = colorful;
+        this.showChineseNames = showChineseNames;
         // 刷新表头
         if (colorful) {
             setColumnIdentifiers(columnNames);

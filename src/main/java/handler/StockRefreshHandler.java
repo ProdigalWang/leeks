@@ -32,6 +32,7 @@ public abstract class StockRefreshHandler extends DefaultTableModel {
 
     private JTable table;
     private boolean colorful = true;
+    private boolean showChineseNames = false;
 
     String url = "https://proxy.finance.qq.com/cgi/cgi-bin/smartbox/search?stockFlag=1&fundFlag=1&app=official_website&c=1&query=";
 
@@ -90,14 +91,15 @@ public abstract class StockRefreshHandler extends DefaultTableModel {
         FontMetrics metrics = table.getFontMetrics(table.getFont());
         table.setRowHeight(Math.max(table.getRowHeight(), metrics.getHeight()));
         table.setModel(this);
-        refreshColorful(!colorful);
+        refreshColorful(!colorful, false);
     }
 
-    public void refreshColorful(boolean colorful) {
-        if (this.colorful == colorful) {
+    public void refreshColorful(boolean colorful, boolean showChineseNames) {
+        if (this.colorful == colorful && this.showChineseNames == showChineseNames) {
             return;
         }
         this.colorful = colorful;
+        this.showChineseNames = showChineseNames;
         // 刷新表头
         if (colorful) {
             setColumnIdentifiers(columnNames);
@@ -258,7 +260,7 @@ public abstract class StockRefreshHandler extends DefaultTableModel {
         // 与columnNames中的元素保持一致
         Vector<Object> v = new Vector<Object>(columnNames.length);
         for (int i = 0; i < columnNames.length; i++) {
-            v.addElement(stockBean.getValueByColumn(columnNames[i], colorful));
+            v.addElement(stockBean.getValueByColumn(columnNames[i], colorful, showChineseNames));
         }
         return v;
     }

@@ -86,15 +86,20 @@ public class StockBean {
      * 返回列名的VALUE 用作展示
      *
      * @param colums   字段名
-     * @param colorful 隐蔽模式
+     * @param colorful         非隐蔽模式
+     * @param showChineseNames 超隐蔽模式下仍显示中文名称
      * @return 对应列名的VALUE值 无法匹配返回""
      */
     public String getValueByColumn(String colums, boolean colorful) {
+        return getValueByColumn(colums, colorful, false);
+    }
+
+    public String getValueByColumn(String colums, boolean colorful, boolean showChineseNames) {
         switch (colums) {
             case "编码":
                 return this.getCode();
             case "股票名称":
-                return colorful ? this.getName() : PinYinUtils.toPinYin(this.getName());
+                return colorful || showChineseNames ? this.getName() : PinYinUtils.toPinYin(this.getName());
             case "当前价":
                 return this.getNow();
             case "买一":

@@ -9,6 +9,7 @@ public class ConfigKeys {
     // 表格配置键
     public static final String KEY_TABLE_STRIPED = "key_table_striped";
     public static final String KEY_COLORFUL = "key_colorful";
+    public static final String KEY_SHOW_CHINESE_NAMES = "key_show_chinese_names";
     
     // 代理配置键
     public static final String KEY_PROXY = "key_proxy";

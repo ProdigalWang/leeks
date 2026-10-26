@@ -103,7 +103,7 @@ public class CoinWindow {
     public static void refresh() {
         if (handler != null) {
             ConfigManager configManager = ConfigManager.getInstance();
-            handler.refreshColorful(configManager.isColorfulEnabled());
+            handler.refreshColorful(configManager.isColorfulEnabled(), configManager.isShowChineseNamesEnabled());
             List<String> codes = loadCoins();
             if (CollectionUtil.isEmpty(codes)) {
                 stop(); //如果没有数据则不需要启动时钟任务浪费资源

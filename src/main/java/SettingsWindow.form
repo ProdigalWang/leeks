@@ -269,7 +269,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Leeks V2.9.8"/>
+          <text value="Leeks V3.1.0"/>
         </properties>
       </component>
       <grid id="b17a5" layout-manager="FlowLayout" hgap="30" vgap="5" flow-align="0">
@@ -310,6 +310,15 @@
               <horizontalAlignment value="2"/>
               <horizontalTextPosition value="2"/>
               <text value="关闭F7"/>
+            </properties>
+          </component>
+          <component id="f6d3c" class="javax.swing.JCheckBox" binding="checkboxShowChineseName">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <text value="超隐蔽模式显示中文名称"/>
+              <toolTipText value="开启后超隐蔽模式仍显示股票/基金中文名称，表头保持拼音"/>
             </properties>
           </component>
         </children>

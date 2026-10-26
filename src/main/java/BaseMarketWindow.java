@@ -103,7 +103,7 @@ public abstract class BaseMarketWindow {
 
     public void refresh() {
         if (handler != null) {
-            handler.refreshColorful(configManager.isColorfulEnabled());
+            handler.refreshColorful(configManager.isColorfulEnabled(), configManager.isShowChineseNamesEnabled());
             List<String> codes = loadCodes();
             if (CollectionUtil.isEmpty(codes)) {
                 stop(); // 如果没有数据则不需要启动时钟任务浪费资源

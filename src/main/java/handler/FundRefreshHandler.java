@@ -26,6 +26,7 @@ public abstract class FundRefreshHandler extends DefaultTableModel {
 
     private JTable table;
     private boolean colorful = true;
+    private boolean showChineseNames = false;
 
     static {
         PropertiesComponent instance = PropertiesComponent.getInstance();
@@ -62,18 +63,19 @@ public abstract class FundRefreshHandler extends DefaultTableModel {
         table.setRowHeight(Math.max(table.getRowHeight(), metrics.getHeight()));
         table.setModel(this);
         try {
-            refreshColorful(!colorful);
+            refreshColorful(!colorful, false);
         } catch (Exception e) {
             // 容错处理
             System.err.println("Failed to refresh colorful: " + e.getMessage());
         }
     }
 
-    public void refreshColorful(boolean colorful) {
-        if (this.colorful == colorful) {
+    public void refreshColorful(boolean colorful, boolean showChineseNames) {
+        if (this.colorful == colorful && this.showChineseNames == showChineseNames) {
             return;
         }
         this.colorful = colorful;
+        this.showChineseNames = showChineseNames;
         // 刷新表头
         if (colorful) {
             setColumnIdentifiers(columnNames);
@@ -265,7 +267,7 @@ public abstract class FundRefreshHandler extends DefaultTableModel {
         // 与columnNames中的元素保持一致
         Vector<Object> v = new Vector<Object>(columnNames.length);
         for (int i = 0; i < columnNames.length; i++) {
-            v.addElement(fundBean.getValueByColumn(columnNames[i], colorful));
+            v.addElement(fundBean.getValueByColumn(columnNames[i], colorful, showChineseNames));
         }
         return v;
     }

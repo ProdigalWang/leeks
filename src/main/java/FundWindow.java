@@ -249,7 +249,7 @@ public class FundWindow implements ToolWindowFactory {
         if (fundRefreshHandler != null) {
             ConfigManager configManager = ConfigManager.getInstance();
             boolean colorful = configManager.isColorfulEnabled();
-            fundRefreshHandler.refreshColorful(colorful);
+            fundRefreshHandler.refreshColorful(colorful, configManager.isShowChineseNamesEnabled());
             List<String> codes = loadFunds();
             if (CollectionUtil.isEmpty(codes)) {
                 stop(); //如果没有数据则不需要启动时钟任务浪费资源

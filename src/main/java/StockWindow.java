@@ -995,7 +995,7 @@ public class StockWindow {
         if (handler != null) {
             commitTableEdits();
             ConfigManager configManager = ConfigManager.getInstance();
-            handler.refreshColorful(configManager.isColorfulEnabled());
+            handler.refreshColorful(configManager.isColorfulEnabled(), configManager.isShowChineseNamesEnabled());
             List<String> codes = loadStocks();
             if (CollectionUtil.isEmpty(codes)) {
                 stop(); //如果没有数据则不需要启动时钟任务浪费资源

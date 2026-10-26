@@ -38,6 +38,7 @@ public class SettingsWindow implements Configurable {
     private JLabel proxyLabel;
     private JTextField inputProxy;
     private JButton proxyTestButton;
+    private JCheckBox checkboxShowChineseName;
 
     @Override
     public @Nls String getDisplayName() {
@@ -55,6 +56,9 @@ public class SettingsWindow implements Configurable {
         textAreaStock.setText(value_stock);
         textAreaCoin.setText(value_coin);
         checkbox.setSelected(!value_color);
+        checkboxShowChineseName.setSelected(instance.getBoolean(ConfigKeys.KEY_SHOW_CHINESE_NAMES, false));
+        checkboxShowChineseName.setEnabled(checkbox.isSelected());
+        checkbox.addActionListener(event -> checkboxShowChineseName.setEnabled(checkbox.isSelected()));
         checkBoxTableStriped.setSelected(instance.getBoolean("key_table_striped"));
         checkboxSina.setSelected(instance.getBoolean("key_stocks_sina"));
         checkboxLog.setSelected(instance.getBoolean("key_close_log"));
@@ -90,6 +94,7 @@ public class SettingsWindow implements Configurable {
         instance.setValue("key_stocks", textAreaStock.getText());
         instance.setValue("key_coins", textAreaCoin.getText());
         instance.setValue("key_colorful", !checkbox.isSelected());
+        instance.setValue(ConfigKeys.KEY_SHOW_CHINESE_NAMES, checkboxShowChineseName.isSelected());
         instance.setValue("key_cron_expression_fund", cronExpressionFund.getText());
         instance.setValue("key_cron_expression_stock", cronExpressionStock.getText());
         instance.setValue("key_cron_expression_coin", cronExpressionCoin.getText());
